@@ -4,10 +4,13 @@ import com.hunger.saviour.portal.dtos.RestaurantDTO;
 import com.hunger.saviour.portal.entities.RestaurantEntity;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 
 public interface RestaurantService {
     public RestaurantDTO createRestaurant(RestaurantDTO restaurantDTO);
     public Page<RestaurantDTO> getRestaurants(int offset, int pagesize);
     public RestaurantDTO getRestaurantById(Integer restaurantId);
+    public List<RestaurantDTO> getRestaurants();
 
 }

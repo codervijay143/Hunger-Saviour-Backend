@@ -3,11 +3,14 @@ server:
 spring:
   application:
     name: order-service
-  data:
-    mongodb:
-      uri:
-      database: orders
-#      uuid-representation: STANDARD
+  datasource:
+    url: jdbc:mysql://localhost:3306/orders?createDatabaseIfNotExist=true
+    username: root
+    password: Coder@9505
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
   kafka:
     consumer:
       bootstrap-servers:

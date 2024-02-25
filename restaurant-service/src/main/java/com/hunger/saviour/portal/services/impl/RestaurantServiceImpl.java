@@ -11,6 +11,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -35,4 +38,18 @@ public class RestaurantServiceImpl implements RestaurantService {
     public RestaurantDTO getRestaurantById(Integer restaurantId) {
         return RestaurantMapper.INSTANCE.entityToDTOWithMenus(this.restaurantRepository.findById(restaurantId).get());
     }
+
+    @Override
+    public List<RestaurantDTO> getRestaurants() {
+        List<RestaurantDTO> restaurantDTOList=new ArrayList<>();
+        List<RestaurantEntity> restaurantEntityList = this.restaurantRepository.findAll();
+        for (RestaurantEntity entity:restaurantEntityList) {
+            RestaurantDTO restaurantDto = RestaurantMapper.INSTANCE.entityToDTO(entity);
+            restaurantDTOList.add(restaurantDto);
+        }
+        return restaurantDTOList;
+
+    }
+
+
 }
